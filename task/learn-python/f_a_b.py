@@ -1,13 +1,13 @@
 #!/usr/bin/python
 #-*-coding=utf-8-*-
 
-def f_a_b(a,b):
+def f(a,b):
   '''
-  f_a_b(a,b) = 
+  f(a,b) = 
     0, if a<0 and b <0
     1, else if a == 0 
     a, else if b == 0
-    f_a_b(a-1,b) + 2* f_a_b(a,b-1) + 1, otherwise
+    f(a-1,b) + 2* f(a,b-1) + 1, otherwise
   '''
   if a >= 0 and b >= 0:
     cache = [[None for j in range(b+1)] for i in range(a+1)]
@@ -23,3 +23,11 @@ def f_a_b(a,b):
       cache[a][b] = do_f(a-1,b) + 2*do_f(a,b-1) + 1
     return cache[a][b]
   return do_f(a,b)
+
+def test():
+  for i in range(10):
+    for j in range(10):
+      print("f(%d,%d)=%d" % (i,j,f(i,j)))
+
+if __name__ == "__main__":
+  test()
