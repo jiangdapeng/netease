@@ -29,7 +29,6 @@ def matrix_file_mul(afile,bfile,result_file):
   save_matrix(result,result_file)
 
 if __name__ == "__main__":
-  print(len(sys.argv))
   if len(sys.argv) != 4:
     print('''
     usage:
