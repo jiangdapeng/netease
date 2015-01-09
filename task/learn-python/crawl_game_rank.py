@@ -4,7 +4,7 @@
 功能：
   抓取 http://top.baidu.com/buzz.php?p=mmogame 页面
   将top50的游戏的排名、关键字、搜索指数发送到指定邮箱
-使用示例：
+抓取使用示例：
 >> html = crawl_page(url)
 >> top50 = extract_content(html)
 >> for game in top50:
@@ -34,6 +34,9 @@ config = {
     "pwd":"testjdp",
     "to_list":["jdpdyx@126.com","632592036@qq.com"]
     }
+
+def log(msg):
+  print("%s %s" % (time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())),msg))
 
 def crawl_page(url=url):
   '''
@@ -66,19 +69,30 @@ def extract_content(html):
       print(e)
   return games
 
+def format_content(top50):
+  table_head = "Rank\tKeywords\tIndex"
+  content = "\n".join(["%+2s\t%-10s\t%+10s" % (game[0],game[1],game[2]) for game in top50])
+  content = "%s\n%s" % (table_head, content)
+  return content
+
+
 def report_top50():
   '''
   抓取数据并发送到指定邮箱
   '''
+  log("downloading")
   top50 = extract_content(crawl_page(url))
-
-  content = "\n".join(["\t".join(game) for game in top50])
+  
+  log("formating")
+  content = format_content(top50)
 
   timestamp = time.strftime('%Y-%m-%d',time.localtime(time.time())) 
   subject = "%s 百度游戏排行版" % timestamp
 
+  log("sending email to %s" % config['user']) 
   sender = MailSender(config['host'],config['user'],config['pwd'])
   sender.sendmail(config['to_list'],subject,content)
+  log("OK") 
 
 if __name__ == "__main__":
   report_top50()
