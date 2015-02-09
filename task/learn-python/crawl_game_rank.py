@@ -89,7 +89,7 @@ def report_top50():
   timestamp = time.strftime('%Y-%m-%d',time.localtime(time.time())) 
   subject = "%s 百度游戏排行版" % timestamp
 
-  log("sending email to %s" % config['user']) 
+  log("sending email to %s" % ";".join(config['to_list'])) 
   sender = MailSender(config['host'],config['user'],config['pwd'])
   sender.sendmail(config['to_list'],subject,content)
   log("OK") 
