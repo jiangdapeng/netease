@@ -14,13 +14,13 @@ cat $output | awk '{
   if ( $2 + 0 > 5 ) {
     print $0;
   }
-}' > $output-gt5
+}' | sort -k1 > $output-gt5
 
 cat $output | awk '{
   if ( $2 + 0 <= 5 ) {
     print $0;
   }
-}' > $output-let5
+}' | sort -k1 > $output-let5
 
 
 # the third test log
@@ -32,10 +32,10 @@ cat $output | awk '{
   if ( $2 + 0 > 5 ) {
     print $0;
   }
-}' > $output-gt5
+}' | sort -k1 > $output-gt5
 
 cat $output | awk '{
   if ( $2 + 0 <= 5 ) {
     print $0;
   }
-}' > $output-let5
+}' | sort -k1 > $output-let5
