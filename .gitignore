@@ -54,3 +54,4 @@ docs/_build/
 target/
 
 task/Basketball/data/
+task/Basketball/*.txt
