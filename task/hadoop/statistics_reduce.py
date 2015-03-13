@@ -20,7 +20,7 @@ def reduce():
   pre = None
   records = []
   for line in sys.stdin:
-    fields = line.split()
+    fields = line.split("\t")
     key = fields[0]
     # 转换为整数
     v = [int(item) for item in fields[1:]]
