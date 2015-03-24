@@ -55,3 +55,4 @@ target/
 
 task/Basketball/data/
 task/Basketball/*.txt
+task/hadoop/metastore_db/
